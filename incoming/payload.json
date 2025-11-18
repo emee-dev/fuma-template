@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "content": "# Hello World",
+      "path": "docs/example.md"
+    },
+    {
+      "content": "console.log(Updated!)",
+      "path": "src/app.js"
+    }
+  ]
+}
