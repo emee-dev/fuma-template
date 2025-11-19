@@ -22,17 +22,19 @@ jobs:
         with:
           node-version: 20
 
-      - name: Create working directory
-        run: mkdir -p incoming
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
 
       - name: Write webhook payload to file
-        run: echo '${{ toJson(github.event.client_payload) }}' > incoming/payload.json
+        run: echo '${{ toJson(github.event.client_payload) }}' > tenant.json
 
       - name: Install deps
         run: npm install
 
       - name: Run file writer script
-        run: node scripts/apply-files.js
+        run: bun run scripts/apply-files.ts
 
       - name: Commit changes
         run: |
