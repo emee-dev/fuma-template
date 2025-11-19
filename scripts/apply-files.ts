@@ -9,9 +9,9 @@ type Sources = {
 
 const payloadPath = path.join(process.cwd(), "tenant.json");
 const content = await readFile(payloadPath, "utf-8");
-const payload: Sources[] = JSON.parse(content);
+const payload: { files: Sources[] } = JSON.parse(content);
 
-const files = payload || [];
+const files = payload.files || [];
 
 if (!Array.isArray(files)) {
   console.error("Invalid payload: files must be an array");
