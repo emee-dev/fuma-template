@@ -25,7 +25,7 @@ jobs:
 
       - name: Run artifact fetcher
         env:
-          ARTIFACT_TOKEN: ${{ secrets.ARTIFACT_TOKEN }}
+          ARTIFACT_TOKEN: ${{ secrets.CLASSIC_ARTIFACT_TOKEN }}
           ARTIFACT_NAME: ${{ github.event.client_payload.artifactName }}
           RUN_ID: ${{ github.event.client_payload.runId }}
           REPO_OWNER: ${{ github.event.client_payload.repoOwner }}
