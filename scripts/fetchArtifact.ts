@@ -4,7 +4,7 @@ import { $ } from "bun";
 import path from "node:path";
 import { ARCHIVE_FILE } from "./utils";
 
-const token = process.env.GH_TOKEN as string;
+const token = process.env.ARTIFACT_TOKEN as string;
 const artifactName = process.env.ARTIFACT_NAME as string;
 const runId = process.env.RUN_ID as string;
 const repoOwner = process.env.REPO_OWNER as string;
