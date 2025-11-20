@@ -1,16 +1,18 @@
 import { unlink } from "fs/promises";
 
-export async function deleteFile(filePath: string) {
+export const TEMPLATE_FILE = "tenant.json";
+export const ARCHIVE_FILE = "artifact.zip";
+
+export async function deleteFile(filePath: string): Promise<void> {
   try {
     await unlink(filePath);
     console.log(`File deleted successfully: ${filePath}`);
-  } catch (err) {
+  } catch (err: any) {
     if (err.code === "ENOENT") {
-      console.error(`File not found: ${filePath}`);
-      process.exit(1);
-    } else {
-      process.exit(1);
-      console.error(`Error deleting file ${filePath}:`, err);
+      console.warn(`File not found (skipped): ${filePath}`);
+      return;
     }
+
+    console.error(`Error deleting file ${filePath}:`, err);
   }
 }
