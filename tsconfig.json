@@ -1,5 +1,4 @@
 {
-  "extends": "../packages/web-editor/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "target": "ESNext",
@@ -17,11 +16,7 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./*"],
-
-      // Resolve web-editor import alia(s)
-      "@/client/*": ["../packages/web-editor/src/client/*"],
-      "@/server/*": ["../packages/web-editor/src/server/*"]
+      "@/*": ["./*"]
     },
     "plugins": [
       {
@@ -29,15 +24,6 @@
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "next.config.js",
-    "mod.ts",
-    "script.ts",
-    "../deploy.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"],
   "exclude": ["node_modules"]
 }
