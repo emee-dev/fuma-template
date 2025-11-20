@@ -1,5 +1,8 @@
 name: Fetch Artifact
 
+permissions:
+  contents: write
+
 on:
   repository_dispatch:
     types: [update-template]
@@ -7,8 +10,17 @@ on:
 jobs:
   fetch:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # ensures repo checkout uses the token
+
+      - name: Setup Git for pushing
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -25,6 +37,7 @@ jobs:
 
       - name: Run artifact fetcher
         env:
+          token: ${{ secrets.GITHUB_TOKEN }}
           ARTIFACT_TOKEN: ${{ secrets.CLASSIC_ARTIFACT_TOKEN }}
           ARTIFACT_NAME: ${{ github.event.client_payload.artifactName }}
           RUN_ID: ${{ github.event.client_payload.runId }}
@@ -40,9 +53,6 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git add .
           git commit -m "Apply incoming file updates" || echo "No changes to commit"
 
