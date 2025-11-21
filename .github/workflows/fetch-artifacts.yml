@@ -8,7 +8,7 @@ on:
     types: [update-template]
 
 jobs:
-  fetch:
+  fetch-artifacts:
     runs-on: ubuntu-latest
 
     steps:
@@ -50,6 +50,20 @@ jobs:
 
       - name: Cleanup unnecessary files
         run: bun run scripts/cleanUp.ts
+
+      - name: workflow
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.CLASSIC_TEMPLATE_TOKEN }}
+          repository: emee-dev/fuma-studio
+          event-type: template-callback
+          client-payload: |
+            {
+              "artifactName": "output-json",
+              "runId": "${{ github.run_id }}",
+              "repoOwner": "${{ github.repository_owner }}",
+              "repoName": "${{ github.event.repository.name }}"
+            }
 
       - name: Commit changes
         run: |
