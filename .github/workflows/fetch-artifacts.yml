@@ -51,20 +51,6 @@ jobs:
       - name: Cleanup unnecessary files
         run: bun run scripts/cleanUp.ts
 
-      # - name: Workflow callback
-      #   uses: peter-evans/repository-dispatch@v3
-      #   with:
-      #     token: ${{ secrets.CLASSIC_TEMPLATE_TOKEN }}
-      #     repository: emee-dev/fuma-studio
-      #     event-type: template-callback
-      #     client-payload: |
-      #       {
-      #         "artifactName": "output-json",
-      #         "runId": "${{ github.event.client_payload.runId }}",
-      #         "repoOwner": "${{ github.repository_owner }}",
-      #         "repoName": "${{ github.event.repository.name }}"
-      #       }
-
       - name: Workflow callback
         env:
           token: ${{ secrets.GITHUB_TOKEN }}
