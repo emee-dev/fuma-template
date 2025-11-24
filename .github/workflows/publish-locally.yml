@@ -3,7 +3,7 @@ name: Publish Docs locallly
 on:
   push:
     branches:
-      - main # triggered when changes are made locally and pushed to this branch
+      - production # triggered when changes are made locally and pushed to this branch
 
 jobs:
   publish-docs-locally:
