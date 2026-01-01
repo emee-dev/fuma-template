@@ -1,0 +1,41 @@
+name: Publish Docs Callback
+
+on:
+  repository_dispatch:
+    types: [editor-callback] # called when docs are edited via the web-editor
+
+permissions:
+  contents: write
+
+jobs:
+  publish-docs-callback:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # ensures repo checkout uses the token
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+
+      - name: Install fuma-content cli
+        run: pnpm install -g @trythis/fuma-content
+
+      - name: Trigger redeployment of docs site
+        env:
+          project_root: "./"
+          projectId: ${{ secrets.PROJECT_ID }}
+          fs_secret: ${{ secrets.FS_API_SECRET }}
+        run: |
+          fuma-content deploy "$project_root" \
+            --projectId "$branch" \
+            --api-key "$fs_secret"

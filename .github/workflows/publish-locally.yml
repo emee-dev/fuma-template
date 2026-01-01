@@ -1,0 +1,67 @@
+name: Publish Docs locally
+
+on:
+  push:
+    branches:
+      - releases # triggered when changes are made locally and pushed to this branch
+
+jobs:
+  publish-docs-locally:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # ensures repo checkout uses the token
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+
+      - name: Install fuma-content cli
+        run: pnpm install -g @trythis/fuma-content
+
+      - name: Extract commit info
+        id: commit
+        run: |
+          echo "commit_msg=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
+          echo "commit_hash=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "author_name=$(git log -1 --pretty=%an)" >> $GITHUB_OUTPUT
+          echo "author_email=$(git log -1 --pretty=%ae)" >> $GITHUB_OUTPUT
+
+      - name: Build collection
+        env:
+          branch: main # Branch on fuma-studio to publish the docs to.
+          collection_root: "./collections"
+        run: |
+          fuma-content build "$collection_root" \
+            --branchId "$branch" \
+            --bru-env Local \
+            --bruno
+
+      - name: Upload collection
+        env:
+          output_folder: "./output"
+          commit_msg: ${{ steps.commit.outputs.commit_msg }}
+          commit_hash: ${{ steps.commit.outputs.commit_hash }}
+          author_name: ${{ steps.commit.outputs.author_name }}
+          author_email: ${{ steps.commit.outputs.author_email }}
+          fs_secret: ${{ secrets.FS_API_SECRET }}
+        run: |
+          fuma-content upload "$output_folder" \
+            --branchId "$branch" \
+            --api-key "$fs_secret" \
+            --commit-msg "$commit_msg" \
+            --commit-hash "$commit_hash" \
+            --author-name "$author_name" \
+            --author-email "$author_email"
+
+      - name: Publish collection and build project
+        run: echo "Command has not been implemented."

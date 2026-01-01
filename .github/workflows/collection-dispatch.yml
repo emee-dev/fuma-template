@@ -1,0 +1,69 @@
+name: Collection dispatch
+
+on:
+  repository_dispatch:
+    types: [collection-dispatch]
+
+permissions:
+  contents: write
+
+jobs:
+  collection-dispatch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # ensures repo checkout uses the token
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+
+      - name: Install fuma-content cli
+        run: pnpm install -g @trythis/fuma-content
+
+      - name: Build collection
+        env:
+          branch: main # Build collection for which branch
+          collection_root: "./collections"
+        run: |
+          fuma-content build "$collection_root" \
+            --branchId "$branch" \
+            --bru-env Local \
+            --bruno
+
+      - name: Upload collection
+        env:
+          output_folder: "./output"
+          branchId: ${{ github.event.client_payload.branchId }}
+          commit_msg: ${{ github.event.client_payload.commit_msg }}
+          commit_hash: ${{ github.event.client_payload.commit_hash }}
+          author_name: ${{ github.event.client_payload.author_name }}
+          author_email: ${{ github.event.client_payload.author_email }}
+        run: |
+          fuma-content upload "$output_folder" \
+            --branchId "$branch" \
+            --api-key "${{ github.event.client_payload.fs_secret }}" \
+            --commit-msg "$commit_msg" \
+            --commit-hash "$commit_hash" \
+            --author-name "$author_name" \
+            --author-email "$author_email"
+
+      - name: Trigger redeployment of docs site
+        env:
+          project_root: "./"
+        run: |
+          fuma-content deploy "$project_root" \
+            --projectId "${{ github.event.client_payload.projectId }}" \
+            --api-key "${{ github.event.client_payload.fs_secret }}"
+
+      - name: Publish collection and build project
+        run: echo "Command has not been implemented."
