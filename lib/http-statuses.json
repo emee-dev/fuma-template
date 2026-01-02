@@ -1,0 +1,224 @@
+[
+	{ "status": 100, "statusText": "Continue", "slug": "continue" },
+	{
+		"status": 101,
+		"statusText": "Switching Protocols",
+		"slug": "switching_protocols"
+	},
+	{ "status": 102, "statusText": "Processing", "slug": "processing" },
+	{ "status": 103, "statusText": "Checkpoint", "slug": "checkpoint" },
+
+	{ "status": 200, "statusText": "OK", "slug": "ok" },
+	{ "status": 201, "statusText": "Created", "slug": "created" },
+	{ "status": 202, "statusText": "Accepted", "slug": "accepted" },
+	{
+		"status": 203,
+		"statusText": "Non-Authoritative Information",
+		"slug": "non_authoritative_information"
+	},
+	{ "status": 204, "statusText": "No Content", "slug": "no_content" },
+	{
+		"status": 205,
+		"statusText": "Reset Content",
+		"slug": "reset_content"
+	},
+	{
+		"status": 206,
+		"statusText": "Partial Content",
+		"slug": "partial_content"
+	},
+	{ "status": 207, "statusText": "Multi-Status", "slug": "multi_status" },
+	{
+		"status": 208,
+		"statusText": "Already Reported",
+		"slug": "already_reported"
+	},
+
+	{
+		"status": 300,
+		"statusText": "Multiple Choices",
+		"slug": "multiple_choices"
+	},
+	{
+		"status": 301,
+		"statusText": "Moved Permanently",
+		"slug": "moved_permanently"
+	},
+	{ "status": 302, "statusText": "Found", "slug": "found" },
+	{ "status": 303, "statusText": "See Other", "slug": "see_other" },
+	{ "status": 304, "statusText": "Not Modified", "slug": "not_modified" },
+	{ "status": 305, "statusText": "Use Proxy", "slug": "use_proxy" },
+	{ "status": 306, "statusText": "Switch Proxy", "slug": "switch_proxy" },
+	{
+		"status": 307,
+		"statusText": "Temporary Redirect",
+		"slug": "temporary_redirect"
+	},
+	{
+		"status": 308,
+		"statusText": "Permanent Redirect",
+		"slug": "permanent_redirect"
+	},
+
+	{ "status": 400, "statusText": "Bad Request", "slug": "bad_request" },
+	{ "status": 401, "statusText": "Unauthorized", "slug": "unauthorized" },
+	{
+		"status": 402,
+		"statusText": "Payment Required",
+		"slug": "payment_required"
+	},
+	{ "status": 403, "statusText": "Forbidden", "slug": "forbidden" },
+	{ "status": 404, "statusText": "Not Found", "slug": "not_found" },
+	{
+		"status": 405,
+		"statusText": "Method Not Allowed",
+		"slug": "method_not_allowed"
+	},
+	{
+		"status": 406,
+		"statusText": "Not Acceptable",
+		"slug": "not_acceptable"
+	},
+	{
+		"status": 407,
+		"statusText": "Proxy Authentication Required",
+		"slug": "proxy_authentication_required"
+	},
+	{
+		"status": 408,
+		"statusText": "Request Time-out",
+		"slug": "request_time_out"
+	},
+	{ "status": 409, "statusText": "Conflict", "slug": "conflict" },
+	{ "status": 410, "statusText": "Gone", "slug": "gone" },
+	{
+		"status": 411,
+		"statusText": "Length Required",
+		"slug": "length_required"
+	},
+	{
+		"status": 412,
+		"statusText": "Precondition Failed",
+		"slug": "precondition_failed"
+	},
+	{
+		"status": 413,
+		"statusText": "Request Entity Too Large",
+		"slug": "request_entity_too_large"
+	},
+	{
+		"status": 414,
+		"statusText": "Request-URI Too Long",
+		"slug": "request_uri_too_long"
+	},
+	{
+		"status": 415,
+		"statusText": "Unsupported Media Type",
+		"slug": "unsupported_media_type"
+	},
+	{
+		"status": 416,
+		"statusText": "Requested Range Not Satisfiable",
+		"slug": "requested_range_not_satisfiable"
+	},
+	{
+		"status": 417,
+		"statusText": "Expectation Failed",
+		"slug": "expectation_failed"
+	},
+	{ "status": 418, "statusText": "I'm a teapot", "slug": "im_a_teapot" },
+	{
+		"status": 421,
+		"statusText": "Unprocessable Entity",
+		"slug": "unprocessable_entity"
+	},
+	{
+		"status": 422,
+		"statusText": "Misdirected Request",
+		"slug": "misdirected_request"
+	},
+	{ "status": 423, "statusText": "Locked", "slug": "locked" },
+	{
+		"status": 424,
+		"statusText": "Failed Dependency",
+		"slug": "failed_dependency"
+	},
+	{
+		"status": 426,
+		"statusText": "Upgrade Required",
+		"slug": "upgrade_required"
+	},
+	{
+		"status": 428,
+		"statusText": "Precondition Required",
+		"slug": "precondition_required"
+	},
+	{
+		"status": 429,
+		"statusText": "Too Many Requests",
+		"slug": "too_many_requests"
+	},
+	{
+		"status": 431,
+		"statusText": "Request Header Fileds Too Large",
+		"slug": "request_header_fileds_too_large"
+	},
+	{
+		"status": 451,
+		"statusText": "Unavailable For Legal Reasons",
+		"slug": "unavailable_for_legal_reasons"
+	},
+
+	{
+		"status": 500,
+		"statusText": "Internal Server Error",
+		"slug": "internal_server_error"
+	},
+	{
+		"status": 501,
+		"statusText": "Not Implemented",
+		"slug": "not_implemented"
+	},
+	{ "status": 502, "statusText": "Bad Gateway", "slug": "bad_gateway" },
+	{
+		"status": 503,
+		"statusText": "Service Unavailable",
+		"slug": "service_unavailable"
+	},
+	{
+		"status": 504,
+		"statusText": "Gateway Timeout",
+		"slug": "gateway_timeout"
+	},
+	{
+		"status": 505,
+		"statusText": "HTTP Version Not Supported",
+		"slug": "http_version_not_supported"
+	},
+	{
+		"status": 506,
+		"statusText": "Variant Also Negotiates",
+		"slug": "variant_also_negotiates"
+	},
+	{
+		"status": 507,
+		"statusText": "Insufficient Storage",
+		"slug": "insufficient_storage"
+	},
+	{
+		"status": 508,
+		"statusText": "Loop Detected",
+		"slug": "loop_detected"
+	},
+	{
+		"status": 509,
+		"statusText": "Bandwidth Limit Exceeded",
+		"slug": "bandwidth_limit_exceeded"
+	},
+	{ "status": 510, "statusText": "Not Extended", "slug": "not_extended" },
+	{
+		"status": 511,
+		"statusText": "Network Authentication Required",
+		"slug": "network_authentication_required"
+	}
+]
