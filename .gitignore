@@ -39,4 +39,8 @@ pnpm-lock.yaml
 studio.config.json
 source
 search
+<<<<<<< HEAD
 collections
+=======
+collections
+>>>>>>> 914869b1e5ae98d93c12baee8b51dda84750a976
